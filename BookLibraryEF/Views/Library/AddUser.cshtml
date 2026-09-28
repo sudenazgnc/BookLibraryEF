@@ -1,0 +1,26 @@
+﻿@model BookLibraryEF.Models.User
+
+@{
+    ViewData["Title"] = "Add New User";
+}
+
+<div class="container mt-4">
+    <h2>Add New User</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="AddUser" method="post">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Full Name</label>
+                    <input asp-for="Name" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">E-mail Adrress</label>
+                    <input asp-for="Email" type="email" class="form-control" required />
+                </div>
+                <button type="submit" class="btn" style="background-color: lightpink; border-color: lightpink; color: black; font-weight: 500;">Save</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>

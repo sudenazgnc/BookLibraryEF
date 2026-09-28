@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Rent Book";
+}
+
+<div class="container mt-4">
+    <h2>Rent Book</h2>
+    <hr />
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="RentBook" method="post">
+                <div class="mb-3">
+                    <label for="userId" class="form-label">Select User</label>
+                    <select name="userId" id="userId" class="form-select searchable-select" required>
+                        <option value="">Select User</option>
+                        @foreach (var user in ViewBag.Users)
+                        {
+                            <option value="@user.UserID">@user.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="bookId" class="form-label">Select Book</label>
+                    <select name="bookId" id="bookId" class="form-select searchable-select" required>
+                        <option value="">Select Book</option>
+                        @foreach (var book in ViewBag.Books)
+                        {
+                            <option value="@book.BookID">@book.Title</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn" style="background-color: lightpink; border-color: lightpink; color: black; font-weight: 500;">Save</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>

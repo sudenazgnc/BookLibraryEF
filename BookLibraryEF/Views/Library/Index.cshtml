@@ -1,0 +1,46 @@
+﻿@model List<BookLibraryEF.Models.Book>
+
+@{
+    ViewData["Title"] = "Book Library";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Library</h2>
+        <div>
+            <a asp-action="AddBook" class="btn" style="background-color: lightpink; border-color: lightpink; color: black; font-weight: 500;">Add New Book</a>
+            <a asp-action="AddUser" class="btn" style="background-color: lightpink; border-color: lightpink; color: black; font-weight: 500;"> Add User</a>
+            <a asp-action="RentBook" class="btn" style="background-color: lightpink; border-color: lightpink; color: black; font-weight: 500;">Rent Book</a>
+        </div>
+    </div>
+
+    <div class="row">
+
+        @foreach (var book in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="@book.ImageUrl" class="card-img-top pt-2" alt="@book.Title" style="height: 300px; object-fit: contain;"
+                         onerror="this.onerror=null;this.src='https://via.placeholder.com/200x300?text=Kapak+Yok';">
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        
+                        <div class="mb-1" style="color: black;">
+                            <strong>Author:</strong> @book.Author?.AuthorName
+                        </div>
+                        
+                        <p class="card-text mb-3" style="font-size: 0.85em; color: #6c757d; font-style: italic;">
+                            "@book.Author?.AuthorInfo"
+                        </p>
+                        
+                        <p class="card-text">
+                            <strong>Release Year:</strong> @book.ReleaseYear <br />
+                            <strong>Price:</strong> $@book.Price.ToString("0.00")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
